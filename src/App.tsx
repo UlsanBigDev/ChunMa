@@ -4,8 +4,7 @@ import './App.css';
 
 function App() {
   return (
-    <div>
-      달력 만들꺼임
+    <div>      
     </div>
   );
 }
