@@ -28,6 +28,16 @@
   color: #61dafb;
 }
 
+.Modal-container {
+  background-color: #a4a7af;
+  height: 30%;
+  width: 30%;
+  display: none;
+}
+.Modal-container.on {
+  display: block;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
