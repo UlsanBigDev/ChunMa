@@ -1,10 +1,13 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import './css/main.css';
+import Home from './page/Home';
 
-function App() {
+function App() {    
   return (
-    <div>      
+    <div className='content'>  
+      <Home/>
     </div>
   );
 }
