@@ -11,7 +11,7 @@ function App() {
   return (
     <div className='content'>  
       <Home/>
-      <Modal component={<DayInfo/>}/>
+      <Modal component={<DayInfo/>} width={300} height={400}/>
     </div>
   );
 }
