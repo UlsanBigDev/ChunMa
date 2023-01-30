@@ -28,15 +28,17 @@
   color: #61dafb;
 }
 
-.Modal-container {
-  background-color: #a4a7af;
-  height: 30%;
-  width: 30%;
-  display: none;
+
+.Modal-content {
+  background-color: #f1f1f1;
+  max-width: 200px;
+  max-height: 300px;
+  display:block;
+  position: absolute;
 }
-.Modal-container.on {
+/* .Modal-content.on {
   display: block;
-}
+} */
 
 @keyframes App-logo-spin {
   from {

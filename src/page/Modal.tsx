@@ -1,18 +1,26 @@
 import React, {useState} from 'react';
 import '../App.css';
 
-function Modal(props: any) {
-
-    const status = props.status ? "Modal-container on" : "Modal-container"
+function Modal() {
+    const [isModal, setIsModal] = useState<boolean>(false);
+    const toggleModal = () => {
+        setIsModal(!isModal);
+    };
 
     return (
-        <div className={status}>
-            <h1>..?일</h1>
-            {/* <button>+</button> */}
-            <div>모달모달...</div>
-            <div>모달..</div>
-            <button onClick={()=>{}}>x</button>      
+        <div>
+            <button onClick={toggleModal}>CLICK</button>
+
+            {isModal && (
+                <div className="Modal-content">
+                    <h2>This is Modal</h2>
+                    <div>this is modal modla modal</div>
+                    <button onClick={toggleModal}>X</button>      
+                </div>
+            )}
+            
         </div>
+        
     );
 }
 
