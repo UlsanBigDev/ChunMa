@@ -3,9 +3,13 @@ import logo from './logo.svg';
 import './App.css';
 import Modal from './page/Modal';
 
-function App() {
+import './css/main.css';
+import Home from './page/Home';
+
+function App() {    
   return (
-    <div>
+    <div className='content'>  
+      <Home/>
       <Modal/>      
     </div>
   );
