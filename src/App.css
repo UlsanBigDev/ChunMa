@@ -28,6 +28,18 @@
   color: #61dafb;
 }
 
+
+.Modal-content {
+  background-color: #f1f1f1;
+  max-width: 200px;
+  max-height: 300px;
+  display:block;
+  position: absolute;
+}
+/* .Modal-content.on {
+  display: block;
+} */
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
