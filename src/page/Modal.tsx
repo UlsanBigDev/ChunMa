@@ -12,10 +12,14 @@ function Modal() {
             <button onClick={toggleModal}>CLICK</button>
 
             {isModal && (
-                <div className="Modal-content">
-                    <h2>This is Modal</h2>
-                    <div>this is modal modla modal</div>
-                    <button onClick={toggleModal}>X</button>      
+                <div>
+                    <div className="Modal-content">
+                        <h2>This is Modal</h2>
+                        <p>
+                            This letter started as a secret in England...
+                        </p>
+                        <button onClick={toggleModal} className="Modal-btn">x</button>      
+                    </div>
                 </div>
             )}
             
