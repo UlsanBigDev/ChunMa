@@ -28,6 +28,13 @@
   color: #61dafb;
 }
 
+.Modal-container {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+}
 
 .Modal-content {
   background-color: #f1f1f1;

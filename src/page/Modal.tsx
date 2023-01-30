@@ -12,7 +12,7 @@ function Modal() {
             <button onClick={toggleModal}>CLICK</button>
 
             {isModal && (
-                <div>
+                <div className='Modal-container'>
                     <div className="Modal-content">
                         <h2>This is Modal</h2>
                         <p>
