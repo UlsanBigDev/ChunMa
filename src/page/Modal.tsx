@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
 import '../App.css';
-
-function Modal() {
+interface IModal {
+    component : React.ReactNode;
+}
+function Modal(props : IModal) {
     const [isModal, setIsModal] = useState<boolean>(false);
     const toggleModal = () => {
         setIsModal(!isModal);
@@ -14,10 +16,7 @@ function Modal() {
             {isModal && (
                 <div className='Modal-container'>
                     <div className="Modal-content">
-                        <h2>This is Modal</h2>
-                        <p>
-                            This letter started as a secret in England...
-                        </p>
+                        { props.component }
                         <button onClick={toggleModal} className="Modal-btn">x</button>      
                     </div>
                 </div>
