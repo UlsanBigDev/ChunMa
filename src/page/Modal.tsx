@@ -15,7 +15,7 @@ function Modal(props : IModal) {
     
     return (
         <div>
-            <div onClick={toggleModal}>{props.day}</div>
+            <p onClick={toggleModal}>{props.day}</p>
 
             {isModal && (
                 <div className='Modal-container'>

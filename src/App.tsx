@@ -10,7 +10,7 @@ function App() {
   return (
     <div className='content'>  
       <Home/>
-      <Modal component={<DayInfo/>} width={300} height={400} day={1}/>
+      <Modal component={<DayInfo/>} width={300} height={400} day={13132426}/>
     </div>
   );
 }
