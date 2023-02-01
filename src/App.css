@@ -65,6 +65,8 @@
 .Modal-day {
   width: 100px;
   height: 100px;
+  font-weight: bold;
+  font-size: 25px;
 }
 
 @keyframes App-logo-spin {

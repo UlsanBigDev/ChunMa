@@ -17,32 +17,32 @@ function Home() {
       <div className='calendar'>
         <div className='calendar-week'>
           {weekArr.map((arr, index)=>{
-            return (<div className='day'><Modal component={<DayInfo/>} width={300} height={400} day={index+1}/></div>)
+            return (<div className='day'><Modal component={<DayInfo changeDay={index+1}/>} width={300} height={400} day={index+1}/></div>)
           })}
         </div>
         <div className='calendar-week'>
           {weekArr.map((arr, index)=>{
-            return (<div className='day'><Modal component={<DayInfo/>} width={300} height={400} day={index+8}/></div>)
+            return (<div className='day'><Modal component={<DayInfo changeDay={index+8}/>} width={300} height={400} day={index+8}/></div>)
           })}
         </div>
         <div className='calendar-week'>
           {weekArr.map((arr, index)=>{
-            return (<div className='day'><Modal component={<DayInfo/>} width={300} height={400} day={index+15}/></div>)
+            return (<div className='day'><Modal component={<DayInfo changeDay={index+15}/>} width={300} height={400} day={index+15}/></div>)
           })}
         </div>
         <div className='calendar-week'>
           {weekArr.map((arr, index)=>{
-            return (<div className='day'><Modal component={<DayInfo/>} width={300} height={400} day={index+22}/></div>)
+            return (<div className='day'><Modal component={<DayInfo changeDay={index+22}/>} width={300} height={400} day={index+22}/></div>)
           })}
         </div>
         <div className='calendar-week'>
           {weekArr.map((arr, index)=>{
-            return (<div className='day'><Modal component={<DayInfo/>} width={300} height={400} day={index+29}/></div>)
+            return (<div className='day'><Modal component={<DayInfo changeDay={index+29}/>} width={300} height={400} day={index+29}/></div>)
           })}
         </div>
         <div className='calendar-week'>
           {weekArr.map((arr, index)=>{
-            return (<div className='day'><Modal component={<DayInfo/>} width={300} height={400} day={index+36}/></div>)
+            return (<div className='day'><Modal component={<DayInfo changeDay={index+36}/>} width={300} height={400} day={index+36}/></div>)
           })}
         </div>
       </div>
