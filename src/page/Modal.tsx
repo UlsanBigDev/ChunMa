@@ -4,6 +4,7 @@ interface IModal {
     component : React.ReactNode;
     width : number;
     height : number;
+    day : number;
 }
 
 function Modal(props : IModal) {
@@ -14,7 +15,7 @@ function Modal(props : IModal) {
     
     return (
         <div>
-            <button onClick={toggleModal}>CLICK</button>
+            <div onClick={toggleModal}>{props.day}</div>
 
             {isModal && (
                 <div className='Modal-container'>

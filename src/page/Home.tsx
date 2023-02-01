@@ -1,5 +1,6 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import Modal from '../page/Modal';
+import DayInfo from '../component/DayInfo';
 
 function Home() {    
   return (
@@ -18,7 +19,7 @@ function Home() {
       </div>
       <div className='calendar'>
         <div className='calendar-week'>
-            <div className='day'><p>1</p></div>
+            <div className='day'><Modal component={<DayInfo/>} width={300} height={400} day={1}/></div>
             <div className='day'><p>1</p></div>
             <div className='day'><p>1</p></div>
             <div className='day'><p>1</p></div>

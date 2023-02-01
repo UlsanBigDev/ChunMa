@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Modal from './page/Modal';
 
@@ -11,7 +10,7 @@ function App() {
   return (
     <div className='content'>  
       <Home/>
-      <Modal component={<DayInfo/>} width={300} height={400}/>
+      <Modal component={<DayInfo/>} width={300} height={400} day={1}/>
     </div>
   );
 }
