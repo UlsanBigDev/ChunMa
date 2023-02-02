@@ -96,8 +96,16 @@ ul{
 
 .todo-line{
     background-color:aliceblue;
-    height:30px;
-    border-bottom:1px solid #D9D9D9;
+    min-height:50px;
+    height:auto;
+    display:flex;
+    align-items: center;
+    padding: 1px 1px 1px 10px;
+}
+
+.todo-line:hover{
+    background-color:rgb(235, 235, 235);
+
 }
 
 .day-info .day-list .todo-line > ul > li {
@@ -105,7 +113,12 @@ ul{
 }
 
 .day-info .day-list .createLine{
-    width : 30px;
+    width : 40px;
+    display:flex;
+    justify-content: center;
+    margin-left:auto;
+    
     height : 20px;
     background-color :rgb(61, 61, 61);
+    color : aliceblue;
 }
