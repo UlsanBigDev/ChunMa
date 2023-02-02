@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Modal from '../page/Modal';
-import DayInfo from '../component/DayInfo';
+
 
 function Home() { 
   const weekArr = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]   
@@ -33,7 +33,7 @@ function Home() {
           return(
             <div className='calendar-week'>        
               { week.map((day)=>{
-                return <div className='day'><Modal component={<DayInfo changeDay={day}/>} width={300} height={400} day={day}/></div>              
+                return <div className='day'><Modal width={300} height={400} day={day}/></div>              
               }) }              
             </div>
           )
