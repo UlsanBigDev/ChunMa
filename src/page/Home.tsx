@@ -17,7 +17,8 @@ function Home() {
       <div className='calendar'>
         <div className='calendar-week'>
           {weekArr.map((arr, index)=>{
-            return (<div className='day'><Modal component={<DayInfo changeDay={index+1}/>} width={300} height={400} day={index+1}/></div>)
+            let aa = index+1
+            return (<div className='day'><Modal component={<DayInfo changeDay={"0"+aa}/>} width={300} height={400} day={index+1}/></div>)
           })}
         </div>
         <div className='calendar-week'>
