@@ -11,9 +11,17 @@ interface IDayInfo {
     day : number;
 }
 
+function createLine(lines : NodeListOf<HTMLElement>, setLines : React.Dispatch<React.SetStateAction<NodeListOf<HTMLElement> | undefined>>){
+    let line = <li>asdqwedfgert</li>;
+    
+    let temp = [...lines, line];
+    
+    setLines(temp);
+}
+
 function DayInfo(props : IDayInfo){
 
-    let [lines, setLines] = useState<HTMLElement[]>();
+    let [lines, setLines] = useState<NodeListOf<HTMLElement>>();
 
     return (
         <div className="day-info">
@@ -21,6 +29,7 @@ function DayInfo(props : IDayInfo){
             <br/>
             <div className="day-list">
                 
+                <div className="createLine" onClick={() => {createLine(lines as NodeListOf<HTMLElement>, setLines);}}></div>
                 <ul>
                     {lines ? lines?.map((v, index)=>{
                         return <li></li>
