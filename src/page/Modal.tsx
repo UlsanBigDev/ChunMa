@@ -1,27 +1,21 @@
 import React, {useState} from 'react';
 import '../App.css';
 
-interface IModal {
-    width : number;
-    height : number;
-    day : number;
-}
-
-interface IDayInfo {
-    day : number;
-}
-
-function createLine(lines : NodeListOf<HTMLElement>, setLines : React.Dispatch<React.SetStateAction<NodeListOf<HTMLElement> | undefined>>){
-    let line = <li>asdqwedfgert</li>;
+function createLine(lines : Array<JSX.Element>, setLines : React.Dispatch<React.SetStateAction<JSX.Element[]>>){
+    let line : JSX.Element = <li>asdqwedfgert</li>;
     
-    let temp = [...lines, line];
+    let temp : Array<JSX.Element> = [];
+    temp = Array.from(lines);
+    temp.push(line);
+
     
     setLines(temp);
 }
 
+
 function DayInfo(props : IDayInfo){
 
-    let [lines, setLines] = useState<NodeListOf<HTMLElement>>();
+    let [lines, setLines] = useState<Array<JSX.Element>>([]);
 
     return (
         <div className="day-info">
@@ -29,12 +23,16 @@ function DayInfo(props : IDayInfo){
             <br/>
             <div className="day-list">
                 
-                <div className="createLine" onClick={() => {createLine(lines as NodeListOf<HTMLElement>, setLines);}}></div>
+                <div className="createLine" onClick={() => {createLine(lines as Array<JSX.Element>, setLines);}}></div>
+                <br/>
+                <div style={{"overflowY":"scroll","height":"250px"}}>
                 <ul>
                     {lines ? lines?.map((v, index)=>{
-                        return <li></li>
+                        return <div className="todo-line" key={index}>asd</div>
                     }) : <p>할 일을 추가해보세요</p>}
-                </ul>                
+                </ul>    
+                </div>
+                            
             </div>
         </div>
     );
