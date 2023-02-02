@@ -1,16 +1,6 @@
 import React, {useState} from 'react';
 import '../App.css';
 
-interface IModal {
-    width : number;
-    height : number;
-    day : number;
-}
-
-interface IDayInfo {
-    day : number;
-}
-
 function DayInfo(props : IDayInfo){
 
     let [lines, setLines] = useState<HTMLElement[]>();
