@@ -1,79 +1,53 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import Modal from '../page/Modal';
+import DayInfo from '../component/DayInfo';
 
-function Home() {    
+function Home() { 
+  const weekArr = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]   
   return (
     <div className='home'>
         <div className='month'>
             <p>January 2023</p>
         </div>
       <div className='week'>
-        <div><p>SUN</p></div>
-        <div><p>MON</p></div>
-        <div><p>TUE</p></div>
-        <div><p>WED</p></div>
-        <div><p>THU</p></div>
-        <div><p>FRI</p></div>
-        <div><p>SAT</p></div>
+        {weekArr.map((arr, index)=>{
+          return <div><p>{arr}</p></div>
+        })}
       </div>
       <div className='calendar'>
         <div className='calendar-week'>
-            <div className='day'><p>1</p></div>
-            <div className='day'><p>1</p></div>
-            <div className='day'><p>1</p></div>
-            <div className='day'><p>1</p></div>
-            <div className='day'><p>1</p></div>
-            <div className='day'><p>1</p></div>
-            <div className='day'><p>1</p></div>
+          {weekArr.map((arr, index)=>{
+            let aa = index+1
+            return (<div className='day'><Modal component={<DayInfo changeDay={"0"+aa}/>} width={300} height={400} day={index+1}/></div>)
+          })}
         </div>
         <div className='calendar-week'>
-            <div className='day'><p>1</p></div>
-            <div className='day'><p>1</p></div>
-            <div className='day'><p>1</p></div>
-            <div className='day'><p>1</p></div>
-            <div className='day'><p>1</p></div>
-            <div className='day'><p>1</p></div>
-            <div className='day'><p>1</p></div>
+          {weekArr.map((arr, index)=>{
+            return (<div className='day'><Modal component={<DayInfo changeDay={index+8}/>} width={300} height={400} day={index+8}/></div>)
+          })}
         </div>
         <div className='calendar-week'>
-            <div className='day'><p>1</p></div>
-            <div className='day'><p>1</p></div>
-            <div className='day'><p>1</p></div>
-            <div className='day'><p>1</p></div>
-            <div className='day'><p>1</p></div>
-            <div className='day'><p>1</p></div>
-            <div className='day'><p>1</p></div>
+          {weekArr.map((arr, index)=>{
+            return (<div className='day'><Modal component={<DayInfo changeDay={index+15}/>} width={300} height={400} day={index+15}/></div>)
+          })}
         </div>
         <div className='calendar-week'>
-            <div className='day'><p>1</p></div>
-            <div className='day'><p>1</p></div>
-            <div className='day'><p>1</p></div>
-            <div className='day'><p>1</p></div>
-            <div className='day'><p>1</p></div>
-            <div className='day'><p>1</p></div>
-            <div className='day'><p>1</p></div>
+          {weekArr.map((arr, index)=>{
+            return (<div className='day'><Modal component={<DayInfo changeDay={index+22}/>} width={300} height={400} day={index+22}/></div>)
+          })}
         </div>
         <div className='calendar-week'>
-            <div className='day'><p>1</p></div>
-            <div className='day'><p>1</p></div>
-            <div className='day'><p>1</p></div>
-            <div className='day'><p>1</p></div>
-            <div className='day'><p>1</p></div>
-            <div className='day'><p>1</p></div>
-            <div className='day'><p>1</p></div>
+          {weekArr.map((arr, index)=>{
+            return (<div className='day'><Modal component={<DayInfo changeDay={index+29}/>} width={300} height={400} day={index+29}/></div>)
+          })}
         </div>
         <div className='calendar-week'>
-            <div className='day'><p>1</p></div>
-            <div className='day'><p>1</p></div>
-            <div className='day'><p>1</p></div>
-            <div className='day'><p>1</p></div>
-            <div className='day'><p>1</p></div>
-            <div className='day'><p>1</p></div>
-            <div className='day'><p>1</p></div>
+          {weekArr.map((arr, index)=>{
+            return (<div className='day'><Modal component={<DayInfo changeDay={index+36}/>} width={300} height={400} day={index+36}/></div>)
+          })}
         </div>
       </div>
     </div>
   );
 }
-
 export default Home;
