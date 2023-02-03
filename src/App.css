@@ -28,6 +28,47 @@
   color: #61dafb;
 }
 
+.Modal-container {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+}
+
+.Modal-content {
+  background-color: #f1f1f1;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  position: fixed;
+  /* justify-content: center; */
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  padding: 15px;
+}
+
+.Modal-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 1px 4px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
+  background-color: red;
+  border-radius: 50%;
+}
+
+.Modal-day {
+  width: 100px;
+  height: 100px;
+  font-weight: bold;
+  font-size: 25px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

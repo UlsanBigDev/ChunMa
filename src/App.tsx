@@ -1,10 +1,15 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import Modal from './page/Modal';
 
-function App() {
+import './css/main.css';
+import Home from './page/Home';
+
+
+function App() {    
   return (
-    <div>      
+    <div className='content'>  
+      <Home/>      
     </div>
   );
 }
