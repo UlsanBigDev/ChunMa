@@ -64,8 +64,7 @@ function Modal(props : IModal) {
                     <div className="Modal-content" style={{
                         minWidth: props.width,
                         minHeight: props.height
-                    }}>
-                        { <DayInfo day={5555}/> }
+                    }}>                        
                         <button onClick={toggleModal} className="Modal-btn">x</button>      
                     </div>
                 </div>

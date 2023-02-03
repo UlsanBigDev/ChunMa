@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Modal from '../page/Modal';
-
+interface IDay {
+  day : number;
+}
 function Home() { 
   const weekArr = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]   
   const calendarData = [
@@ -11,7 +13,9 @@ function Home() {
     [29,30,31,32,32,32,32],
     [32,32,32,32,32,32,32],
   ]
-  
+  function Day(props : IDay) {
+    return <div className='day'><p>{ props.day }</p></div>;
+  }
   return (
     <div className='home'>
         <div className='month'>
@@ -27,7 +31,7 @@ function Home() {
           return(
             <div className='calendar-week'>        
               { week.map((day)=>{
-                return <div className='day'><Modal width={300} height={400}/></div>              
+                return <Day day={day}/>
               }) }              
             </div>
           )
