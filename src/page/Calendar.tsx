@@ -26,29 +26,29 @@ function Calendar() {
     for (let i = 1; i<=lastDate; i++){
       arr.push(i);
     }
-    for (arr.length; arr.length < weekNum * 7; ){
+    while (arr.length < weekNum * 7){
       arr.push(0);
     }
 
+    
+
     return (
       <div>
-        <center>
-          <h1>{monthTemp[prevMonth]} {prevYear}</h1>
-          {dayTemp.map((day)=>{
-            return(
-              <b><span>{day}{" "}</span></b>
-            )
-          })}
-          <br/>
-          {arr.map((date,index)=>{
-            if ((index+1) % 7 == 0){
-              return <div>{date}<hr/></div>
-            }
-            else {
-              return <div>{date}</div>
-            }
-          })}
-        </center>
+        <h1>{monthTemp[prevMonth]} {prevYear}</h1>
+        {dayTemp.map((day)=>{
+          return(
+            <b><span>{day}{" "}</span></b>
+          )
+        })}
+        <br/>
+        {arr.map((date,index)=>{
+          if ((index+1) % 7 == 0){
+            return <div>{date}<hr/></div>
+          }
+          else {
+            return <div>{date}</div>
+          }
+        })}
       </div>
     );
   }
