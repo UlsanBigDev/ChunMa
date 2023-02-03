@@ -30,7 +30,7 @@ function Modal(props : IModal) {
 
     return (
         <div>
-            <div className='Modal-day' onClick={toggleModal}>{props.day}</div>
+            <div className='Modal-day' onClick={toggleModal}>NNNNN</div>
 
             {isModal && (
                 <div className='Modal-container'>
@@ -38,7 +38,7 @@ function Modal(props : IModal) {
                         minWidth: props.width,
                         minHeight: props.height
                     }}>
-                        { <DayInfo day={props.day}/> }
+                        { <DayInfo day={5555}/> }
                         <button onClick={toggleModal} className="Modal-btn">x</button>      
                     </div>
                 </div>

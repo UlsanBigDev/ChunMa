@@ -9,8 +9,7 @@ import Home from './page/Home';
 function App() {    
   return (
     <div className='content'>  
-      <Home/>
-      <Modal width={300} height={400} day={13132426}/>
+      <Home/>      
     </div>
   );
 }

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Modal from '../page/Modal';
 
-
 function Home() { 
   const weekArr = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]   
   const calendarData = [
@@ -12,6 +11,7 @@ function Home() {
     [29,30,31,32,32,32,32],
     [32,32,32,32,32,32,32],
   ]
+  
   return (
     <div className='home'>
         <div className='month'>
@@ -22,18 +22,12 @@ function Home() {
           return <div><p>{arr}</p></div>
         })}
       </div>
-      <div className='calendar'>
-        {/* <div className='calendar-week'>        
-          {weekArr.map((arr, index)=>{
-            let aa = index+1
-            return (<div className='day'><Modal component={<DayInfo changeDay={"0"+aa}/>} width={300} height={400} day={index+1}/></div>)
-          })}
-        </div> */}
+      <div className='calendar'>        
         {calendarData.map((week) => {
           return(
             <div className='calendar-week'>        
               { week.map((day)=>{
-                return <div className='day'><Modal width={300} height={400} day={day}/></div>              
+                return <div className='day'><Modal width={300} height={400}/></div>              
               }) }              
             </div>
           )
@@ -43,5 +37,6 @@ function Home() {
     </div>
   );
 }
+
 export default Home;
 

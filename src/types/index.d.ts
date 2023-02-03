@@ -3,6 +3,5 @@ interface IDayInfo {
 }
 interface IModal {
     width : number;
-    height : number;
-    day : number;
+    height : number;    
 }
