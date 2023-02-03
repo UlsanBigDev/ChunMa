@@ -12,7 +12,6 @@ function App() {
     <div className='content'>
       <Calendar/>  
       {/* <Home/> */}
-      {/* <Modal component={<DayInfo/>} width={300} height={400} day={13132426}/> */}
     </div>
   );
 }
