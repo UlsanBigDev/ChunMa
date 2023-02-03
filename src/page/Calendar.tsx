@@ -30,8 +30,12 @@ function Calendar() {
       arr.push(0);
     }
 
-    
+    const arrWeek=[];
+    for (let i = 0; i<weekNum; i++){
+      arrWeek.push(arr.slice(0+7*i,7*(i+1))) //0,7 7,14 14,21 21,28 28,35
+    }
 
+    console.log(arrWeek);
     return (
       <div>
         <h1>{monthTemp[prevMonth]} {prevYear}</h1>
@@ -41,14 +45,19 @@ function Calendar() {
           )
         })}
         <br/>
-        {arr.map((date,index)=>{
+        <div>{arr.slice(0,7)}</div>
+        <div>{arr.slice(7,14)}</div>
+        <div>{arr.slice(14,21)}</div>
+        <div>{arr.slice(21,28)}</div>
+        <div>{arr.slice(28,35)}</div>
+        {/* {arr.map((date,index)=>{
           if ((index+1) % 7 == 0){
             return <div>{date}<hr/></div>
           }
           else {
             return <div>{date}</div>
           }
-        })}
+        })} */}
       </div>
     );
   }
