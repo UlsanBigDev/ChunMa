@@ -1,5 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, ReactNode, useState } from 'react';
+import DayInfo from '../component/DayInfo';
 import Modal from '../page/Modal';
+
+interface IDay {
+  day : number;
+  clickEvent : Function;
+}
 
 function Home() { 
   const weekArr = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]   
@@ -11,12 +17,30 @@ function Home() {
     [29,30,31,32,32,32,32],
     [32,32,32,32,32,32,32],
   ]
-  
+  function Day(props : IDay) {
+    return <div className='day' onClick={()=>{props.clickEvent(props.day)}}><p>{ props.day }</p></div>;
+  }
+
+  function ModalListener(props : {component? : ReactNode, closeModal : Function}) {
+    return props.component ? <Modal width={300} height={400} component={props.component} closeFunction={closeModal} /> : <></>
+  }
+
+  const [modalComponent, setModalComponet] = useState<ReactNode|null>();
+
+  function openModal(day : number) {
+    setModalComponet(<DayInfo day={day}/>);
+  }
+
+
+  function closeModal() {
+    setModalComponet(null);
+  }
   return (
     <div className='home'>
-        <div className='month'>
-            <p>January 2023</p>
-        </div>
+      <ModalListener component={modalComponent} closeModal={closeModal}/>
+      <div className='month'>
+          <p>January 2023</p>
+      </div>
       <div className='week'>
         {weekArr.map((arr, index)=>{
           return <div><p>{arr}</p></div>
@@ -27,7 +51,7 @@ function Home() {
           return(
             <div className='calendar-week'>        
               { week.map((day)=>{
-                return <div className='day'><Modal width={300} height={400}/></div>              
+                return <Day day={day} clickEvent={openModal}/>
               }) }              
             </div>
           )
