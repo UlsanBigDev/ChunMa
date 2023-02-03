@@ -1,39 +1,51 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import '../App.css';
 
-function createLine(lines : Array<JSX.Element>, setLines : React.Dispatch<React.SetStateAction<JSX.Element[]>>, txt : string){
-    if(txt != ""){
-        let line : JSX.Element = (
-            <div className="todo-line">
-                <input type="checkbox"/>
-                <p>{txt}</p>
-            </div>
-            );
-        
-        let temp : Array<JSX.Element> = [];
-        temp = Array.from(lines);
-        temp.push(line);
-    
-        setLines(temp);
-    }
-    
-}
 
 
 function DayInfo(props : IDayInfo){
 
     let [lines, setLines] = useState<Array<JSX.Element>>([]);
     let [text, setText] = useState<string>("");
+    //let [checked, setChecked] = useState<boolean>(false);
 
-    
+
+    let inputField = useRef<HTMLInputElement>(null);
+
+    function createLine(){
+
+        //let [isCheck,setIsChecked] = useState<boolean>();
+        let isChecked=false;
+
+        if(text != ""){
+            let line : JSX.Element = (
+                <div className="todo-line">
+                    <input type="checkbox" onChange={(e)=>{console.log(isChecked = e.target.checked);console.log(isChecked)}}/>
+                    <p style={{textDecoration: isChecked ? 'line-through' : 'none'}}>{text}</p>
+                </div>
+                );
+            
+            let temp : Array<JSX.Element> = [];
+            temp = Array.from(lines);
+            temp.push(line);
+        
+            setLines(temp);
+        }
+        setText("");
+    }
+
+    useEffect(()=>{
+        inputField.current?.focus();
+    },[]);
+
     return (
         <div className="day-info">
             <div className="today">2023.01.{props.day}</div>
             <br/>
             <div className="day-list">
                 <div style={{display:"flex"}}>
-                    <input type="text" value={text} onChange={(e)=>{setText(e.currentTarget.value)}}/>
-                    <div className="createLine" onClick={() => {createLine(lines as Array<JSX.Element>, setLines, text);}}>추가</div>
+                    <input type="text" ref={inputField} value={text} onChange={(e)=>{setText(e.currentTarget.value)}} onKeyUp={(e)=>{if(e.key === 'Enter') createLine()}}/>
+                    <div className="createLine" onClick={createLine} >추가</div>
                 </div>
                 
                 <br/>
