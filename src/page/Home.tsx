@@ -18,16 +18,19 @@ function Home() {
   function Day(props : IDay) {
     return <div className='day' onClick={()=>{props.clickEvent(props.day)}}><p>{ props.day }</p></div>;
   }
-  function ModalListener(props : {component? : ReactNode}) {
-    return props.component ? <Modal width={300} height={400} component={props.component} /> : <></>
+  function ModalListener(props : {component? : ReactNode, closeModal : Function}) {
+    return props.component ? <Modal width={300} height={400} component={props.component} closeFunction={closeModal} /> : <></>
   }
   const [modalComponent, setModalComponet] = useState<ReactNode|null>();
   function openModal(day : number) {
     setModalComponet(<DayInfo day={day}/>);
   }
+  function closeModal() {
+    setModalComponet(null);
+  }
   return (
     <div className='home'>
-      <ModalListener component={modalComponent}/>
+      <ModalListener component={modalComponent} closeModal={closeModal}/>
       <div className='month'>
           <p>January 2023</p>
       </div>

@@ -5,4 +5,5 @@ interface IModal {
     width : number;
     height : number;    
     component : ReactNode;
+    closeFunction : Function?;
 }
