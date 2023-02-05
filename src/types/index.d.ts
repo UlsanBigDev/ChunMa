@@ -1,4 +1,6 @@
 interface IDayInfo {
+    year : number;
+    month : number;
     day : number;
 }
 interface IModal {

@@ -34,7 +34,7 @@ function Calendar(props : {setModal:Function}) {
 
     function openModal(day : number) {
       // setModalComponet();
-      props.setModal(<DayInfo day={day}/>);
+      props.setModal(<DayInfo year = {prevYear} month = {prevMonth+1} day={day}/>);
     }
   
     const arr=[];
@@ -63,7 +63,7 @@ function Calendar(props : {setModal:Function}) {
     return (
       <div>
         <div className='month'>
-          <p>January 2023</p>
+          <p>{monthTemp[prevMonth]} {prevYear}</p>
       </div>
       <div className='week'>
         {weekArr.map((arr, index)=>{

@@ -49,7 +49,7 @@ export default function DayInfo(props : IDayInfo){
 
     return (
         <div className="day-info">
-            <div className="today">2023.01.{props.day}</div>
+            <div className="today">{props.year}.{props.month}.{props.day}</div>
             <br/>
             <div className="day-list">
                 <div style={{display:"flex"}}>
