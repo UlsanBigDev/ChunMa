@@ -40,7 +40,7 @@ function Home() {
         })}
       </div>
       <div className='calendar'>        
-        {calendarData.map((week) => {
+        {calendarData.map((weeks) => {
           return(
             <div className='calendar-week'>        
               { week.map((day)=>{
