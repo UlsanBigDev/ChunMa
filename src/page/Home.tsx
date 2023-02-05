@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Modal from '../page/Modal';
 
-function Home() { 
+function Home(props: IHome) { 
   const weekArr = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]   
   const calendarData = [
     [1,2,3,4,5,6,7],
@@ -27,7 +27,7 @@ function Home() {
           return(
             <div className='calendar-week'>        
               { week.map((day)=>{
-                return <div className='day'><Modal width={300} height={400}/></div>              
+                return <div className='day'><Modal width={300} height={400} asdf={props.qwer}/></div>              
               }) }              
             </div>
           )

@@ -3,5 +3,9 @@ interface IDayInfo {
 }
 interface IModal {
     width : number;
-    height : number;    
+    height : number;
+    asdf : number;    
+}
+interface IHome {
+    qwer : number;
 }

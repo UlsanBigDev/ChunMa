@@ -1,6 +1,8 @@
-import React from 'react';
+import React,{useState} from 'react';
 import logo from './logo.svg';
 import '../App.css';
+import Modal from './Modal';
+import Home from './Home';
 
 function Calendar() {
   const monthTemp = ["January","Feburary","March","April","June","July","Agust","September","October","November","December"];
@@ -17,7 +19,7 @@ function Calendar() {
 
     console.log(prevYear, monthTemp[prevMonth], prevDate, dayTemp[prevDay]);
 
-    let weekNum = Math.ceil((prevDay + lastDate) / 7);
+    let weekNum = Math.ceil((firstDay + lastDate) / 7); //prevDay -> firstDay 진짜 바본가
     
     const arr=[];
     for (let i = 0; i<firstDay; i++){
@@ -32,7 +34,7 @@ function Calendar() {
 
     const arrWeek=[];
     for (let i = 0; i<weekNum; i++){
-      arrWeek.push(arr.slice(0+7*i,7*(i+1))) //0,7 7,14 14,21 21,28 28,35
+      arrWeek.push(arr.slice(0 + 7*i, 7 * (i+1))) //0,7 7,14 14,21 21,28 28,35
     }
 
     console.log(arrWeek);
@@ -45,19 +47,13 @@ function Calendar() {
           )
         })}
         <br/>
-        <div>{arr.slice(0,7)}</div>
-        <div>{arr.slice(7,14)}</div>
-        <div>{arr.slice(14,21)}</div>
-        <div>{arr.slice(21,28)}</div>
-        <div>{arr.slice(28,35)}</div>
-        {/* {arr.map((date,index)=>{
-          if ((index+1) % 7 == 0){
-            return <div>{date}<hr/></div>
-          }
-          else {
-            return <div>{date}</div>
-          }
-        })} */}
+         
+        {arrWeek.map((week,index)=>{
+          return (week.map((qqqq)=>{
+            return <Home qwer={qqqq}/>
+          }))
+        })}
+      
       </div>
     );
   }
