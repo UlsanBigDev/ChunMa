@@ -1,8 +1,18 @@
-import React from 'react';
+import React,{useState} from 'react';
 import logo from './logo.svg';
 import '../App.css';
+import Modal from './Modal';
+import Home from './Home';
+import DayInfo from '../component/DayInfo';
 
-function Calendar() {
+interface IDay {
+  day : number;
+  clickEvent : Function;
+}
+function Calendar(props : {setModal:Function}) {
+  function Day(props : IDay) {
+    return <div className='day' onClick={()=>{props.clickEvent(props.day)}}><p>{ props.day }</p></div>;
+  }
   const monthTemp = ["January","Feburary","March","April","June","July","Agust","September","October","November","December"];
   const dayTemp = ["SUN","MON","TUE","WED","THU","FRI","SAT"];
     
@@ -17,7 +27,12 @@ function Calendar() {
 
     console.log(prevYear, monthTemp[prevMonth], prevDate, dayTemp[prevDay]);
 
-    let weekNum = Math.ceil((prevDay + lastDate) / 7);
+    let weekNum = Math.ceil((firstDay + lastDate) / 7); //prevDay -> firstDay 진짜 바본가
+
+    function openModal(day : number) {
+      // setModalComponet();
+      props.setModal(<DayInfo day={day}/>);
+    }
     
     const arr=[];
     for (let i = 0; i<firstDay; i++){
@@ -30,28 +45,40 @@ function Calendar() {
       arr.push(0);
     }
 
+    const arrWeek=[];
+    for (let i = 0; i<weekNum; i++){
+      arrWeek.push(arr.slice(0 + 7*i, 7 * (i+1))) //0,7 7,14 14,21 21,28 28,35
+    }
+    const weekArr = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]   
     
-
+    // console.log(arrWeek);
     return (
       <div>
-        <h1>{monthTemp[prevMonth]} {prevYear}</h1>
-        {dayTemp.map((day)=>{
+        <div className='month'>
+          <p>January 2023</p>
+      </div>
+      <div className='week'>
+        {weekArr.map((arr, index)=>{
+          return <div><p>{arr}</p></div>
+        })}
+      </div>
+      <div className='calendar'>        
+        {arrWeek.map((weeks) => {
           return(
-            <b><span>{day}{" "}</span></b>
+            <div className='calendar-week'>        
+              { weeks.map((day)=>{
+                return <Day day={day} clickEvent={()=>{openModal(day)}}/>
+              }) }              
+            </div>
           )
         })}
-        <br/>
-        {arr.map((date,index)=>{
-          if ((index+1) % 7 == 0){
-            return <div>{date}<hr/></div>
-          }
-          else {
-            return <div>{date}</div>
-          }
-        })}
+        
+      </div>        
       </div>
     );
   }
+
+  
 
   
 export default Calendar;

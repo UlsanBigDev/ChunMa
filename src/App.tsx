@@ -10,7 +10,6 @@ import Calendar from './page/Calendar';
 function App() {    
   return (
     <div className='content'>
-      {/* <Calendar/>   */}
       <Home/> 
     </div>
   );
