@@ -41,14 +41,14 @@ function Calendar() {
     // console.log(arrWeek);
     return (
       <div>
-        {/* <h1>{monthTemp[prevMonth]} {prevYear}</h1>
-        {dayTemp.map((day)=>{
+        {/* <h1>{monthTemp[prevMonth]} {prevYear}</h1> */}
+        {/* {dayTemp.map((day)=>{
           return(
             <b><span>{day}{" "}</span></b>
           )
-        })}
-        <br/> */}
-        <Home qwert={arrWeek}/>
+        })} */}
+        
+        <Home month={monthTemp[prevMonth]} year={prevYear} qwert={arrWeek}/>
         {/* {arrWeek.map((week,index)=>{
           return (week.map((qqqq)=>{
             return <Home qwer={qqqq} />

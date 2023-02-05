@@ -16,7 +16,7 @@ function Home(props: IHome) {
   return (
     <div className='home'>
         <div className='month'>
-            <p>January 2023</p>
+            <p>{props.month} {props.year}</p>
         </div>
       <div className='week'>
         {weekArr.map((arr, index)=>{

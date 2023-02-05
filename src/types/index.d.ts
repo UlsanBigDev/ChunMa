@@ -7,6 +7,7 @@ interface IModal {
     asdf : number;    
 }
 interface IHome {
-    // qwer : number;
+    month : string;
+    year : number;
     qwert: number[][];
 }
