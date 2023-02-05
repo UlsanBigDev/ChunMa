@@ -10,7 +10,6 @@ function Home() {
   }
 
   const [modalComponent, setModalComponet] = useState<ReactNode|null>();
-
   function closeModal() {
     setModalComponet(null);
   }

@@ -1,7 +1,5 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import '../App.css';
-
-
 
 function Modal(props : IModal) {
 
@@ -11,7 +9,7 @@ function Modal(props : IModal) {
     };
 
     return (
-        <div>            
+        <div>
             <div className='Modal-container'>                
                 <div className="Modal-content" style={{
                     minWidth: props.width,
