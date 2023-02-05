@@ -24,6 +24,8 @@ function Calendar(props : {setModal:Function}) {
     let prevDay = startDay.getDay(); //요일 [0,1,2,3,4,5,6]
     let firstDay = new Date(prevYear,prevMonth,1).getDay();
     let lastDate = new Date(prevYear,prevMonth+1,0).getDate();
+    let previousmonth = new Date(prevYear,prevMonth-1,0).getDate(); // 저번 달의 마지막 날짜(전 달의 날짜를 표기하기 위해서)
+    let nextmonth = new Date(prevYear,prevMonth+2,0).getDay(); // 다음 달의 첫 요일(다음 달의 날짜를 표기하기 위해서)
 
     console.log(prevYear, monthTemp[prevMonth], prevDate, dayTemp[prevDay]);
 
@@ -34,15 +36,22 @@ function Calendar(props : {setModal:Function}) {
       props.setModal(<DayInfo day={day}/>);
     }
     
+    console.log(previousmonth, nextmonth)
     const arr=[];
-    for (let i = 0; i<firstDay; i++){
-      arr.push(-1);
+
+    for (let i = previousmonth - firstDay+1; i<=previousmonth; i++){
+      arr.push(i);
     }
+
     for (let i = 1; i<=lastDate; i++){
       arr.push(i);
     }
+
+    let i = 1;
+    
     while (arr.length < weekNum * 7){
-      arr.push(0);
+      arr.push(i);
+      i += 1;
     }
 
     const arrWeek=[];
