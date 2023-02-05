@@ -11,7 +11,7 @@ function App() {
   return (
     <div className='content'>
       <Calendar/>  
-      <Home qwer={1}/>
+      <Home qwert={[]}/>
     </div>
   );
 }

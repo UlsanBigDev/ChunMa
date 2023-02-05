@@ -37,22 +37,23 @@ function Calendar() {
       arrWeek.push(arr.slice(0 + 7*i, 7 * (i+1))) //0,7 7,14 14,21 21,28 28,35
     }
 
-    console.log(arrWeek);
+    
+    // console.log(arrWeek);
     return (
       <div>
-        <h1>{monthTemp[prevMonth]} {prevYear}</h1>
+        {/* <h1>{monthTemp[prevMonth]} {prevYear}</h1>
         {dayTemp.map((day)=>{
           return(
             <b><span>{day}{" "}</span></b>
           )
         })}
-        <br/>
-         
-        {arrWeek.map((week,index)=>{
+        <br/> */}
+        <Home qwert={arrWeek}/>
+        {/* {arrWeek.map((week,index)=>{
           return (week.map((qqqq)=>{
-            return <Home qwer={qqqq}/>
+            return <Home qwer={qqqq} />
           }))
-        })}
+        })} */}
       
       </div>
     );
