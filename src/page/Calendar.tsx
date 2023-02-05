@@ -8,11 +8,16 @@ import DayInfo from '../component/DayInfo';
 interface IDay {
   day : number;
   clickEvent : Function;
+  year : number;
+  month : number;
 }
+
+function Day(props : IDay) {
+  return <div className='day' onClick={()=>{props.clickEvent(props.day)}}><p>{ props.day }</p></div>;
+}
+
 function Calendar(props : {setModal:Function}) {
-  function Day(props : IDay) {
-    return <div className='day' onClick={()=>{props.clickEvent(props.day)}}><p>{ props.day }</p></div>;
-  }
+  
   const monthTemp = ["January","Feburary","March","April","June","July","Agust","September","October","November","December"];
   const dayTemp = ["SUN","MON","TUE","WED","THU","FRI","SAT"];
     
@@ -39,6 +44,17 @@ function Calendar(props : {setModal:Function}) {
   
     const arr=[];
 
+    const testarr = [];
+    for ( let i = 0; i < firstDay; i++ ){
+      testarr.push(-1);
+    }
+    for (let i = 1; i<=lastDate; i++){
+      testarr.push(i);
+    }
+    while (arr.length < weekNum * 7){
+      testarr.push(0);
+    }
+    
     for (let i = previousmonth - firstDay+1; i<=previousmonth; i++){
       arr.push(i);
     }
@@ -55,7 +71,7 @@ function Calendar(props : {setModal:Function}) {
 
     const arrWeek=[];
     for (let i = 0; i<weekNum; i++){
-      arrWeek.push(arr.slice(0 + 7*i, 7 * (i+1))) //0,7 7,14 14,21 21,28 28,35
+      arrWeek.push(testarr.slice(0 + 7*i, 7 * (i+1))) //0,7 7,14 14,21 21,28 28,35
     }
     const weekArr = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]   
     
@@ -75,7 +91,17 @@ function Calendar(props : {setModal:Function}) {
           return(
             <div className='calendar-week'>        
               { weeks.map((day)=>{
-                return <Day day={day} clickEvent={()=>{openModal(day)}}/>
+                if ( day === -1) {
+                  if ( prevMonth === 0 ) {
+                    return <Day year = {prevYear-1} month = {12} day={day} clickEvent={()=>{openModal(day)}}/>
+                  } else {
+                    return <Day year = {prevYear} month = {prevMonth} day={day} clickEvent={()=>{openModal(day)}}/>
+                  }
+                } else if ( day === 0 ) {
+                  return <Day year = {prevYear} month = {prevMonth+2} day={day} clickEvent={()=>{openModal(day)}}/>
+                } else {
+                  return <Day year = {prevYear} month = {prevMonth} day={day} clickEvent={()=>{openModal(day)}}/>
+                }
               }) }              
             </div>
           )
