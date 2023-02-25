@@ -11,7 +11,7 @@ function ListItem(props : IListItem){
     return (
         <div className="todo-line">
             <input type="checkbox" onChange={(e)=>{setIsChecked(e.target.checked);}}/>
-            <p style={isChecked ? {textDecoration: "text-through"} : {textDecoration:"none"}}>{props.text}</p>
+            <p style={isChecked ? {textDecorationLine: "line-through"} : {textDecorationLine:"none"}}>{props.text}</p>
         </div>
     );
 }
