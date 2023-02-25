@@ -3,6 +3,8 @@ import '../App.css';
 
 function Modal(props : IModal) {
 
+    const [isModal, setIsModal] = useState<boolean>(false);
+
     return (
         <div>
             <div className='Modal-container'>                

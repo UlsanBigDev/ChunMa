@@ -28,16 +28,10 @@ export default function DayInfo(props : IDayInfo){
     function createLine(){
 
         if(text != ""){
-            let line : JSX.Element = (
-                <ListItem text={text}/>
-                
-                );
+            let line : JSX.Element = <ListItem text={text}/>
             
-            let temp : Array<JSX.Element> = [];
-            temp = Array.from(lines);
-            temp.push(line);
+            setLines([...lines, line])
         
-            setLines(temp);
             setText("");
         }
         
@@ -60,7 +54,7 @@ export default function DayInfo(props : IDayInfo){
                 <br/>
                 <div style={{"overflowY":"scroll","height":"250px"}}>
                 <ul>
-                    {lines ? lines : <p>할 일을 추가해보세요</p>}
+                    {lines.length != 0 ? lines : <p>할 일을 추가해보세요</p>}
                 </ul>    
                 </div>
                             

@@ -44,8 +44,10 @@ p {
     flex-direction: column;
 }
 .calendar-week {
+    /* background-color: #611a1a; */
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 .day {
     width: 14.2%;
@@ -120,4 +122,9 @@ ul{
     height : 20px;
     background-color :rgb(61, 61, 61);
     color : aliceblue;
+}
+
+.MonthMove{
+    display: flex;
+    justify-content: space-around;
 }
