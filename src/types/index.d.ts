@@ -14,5 +14,5 @@ interface IHome {
     month : string;
     year : number;
     qwert: number[][];
-    height : number;        
+    height : number;
 }
