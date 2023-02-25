@@ -173,26 +173,49 @@ function Calendar(props : {setModal:Function}) {
         })}
       </div>
       <div className='calendar'>        
-        {arrWeek.map((weeks) => {
+        {/* {arrWeek.map((weeks) => {
           return(
             <div className='calendar-week'>
               { weeks.map((day, index)=>{
                 console.log(day);
-                if ( index <= PLDay) {
+                if ( index <= PLDay ) {
                   if ( viewMonth === 0 ) {
-                    return <Day year = {viewYear-1} month = {12} day={day} clickEvent={()=>{openModal(viewYear-1, viewMonth, day)}}/>
-                  } else {
-                    return <Day year = {viewYear} month = {viewMonth} day={day} clickEvent={()=>{openModal(viewYear, viewMonth, day)}}/>
+                    return <Day year = {viewYear} month = {viewMonth + 1} day={day} clickEvent={()=>{openModal(viewYear, viewMonth + 1, day)}}/>
+                  } else if ( index <= PLDay) {
+                    return <Day year = {viewYear - 1} month = {12} day={day} clickEvent={()=>{openModal(viewYear - 1, 12 , day)}}/>
                   }
-                } else if ( day === 0 ) {
-                  return <Day year = {prevYear} month = {prevMonth+2} day={nextmonth - 5 + index} clickEvent={()=>{openModal(prevYear,prevMonth+2,nextmonth - 5 + index)}}/>
-                } else {
-                  return <Day year = {prevYear} month = {prevMonth+1} day={day} clickEvent={()=>{openModal(prevYear,prevMonth+1,day)}}/>
-                }
+                } 
+                  // else {
+                  //   return <Day year = {viewYear} month = {viewMonth} day={day} clickEvent={()=>{openModal(viewYear, viewMonth, day)}}/>
+                  // }
+                // else if ( day === 0 ) {
+                //   return <Day year = {prevYear} month = {prevMonth+2} day={nextmonth - 5 + index} clickEvent={()=>{openModal(prevYear,prevMonth+2,nextmonth - 5 + index)}}/>
+                // } else {
+                //   return <Day year = {prevYear} month = {prevMonth+1} day={day} clickEvent={()=>{openModal(prevYear,prevMonth+1,day)}}/>
+                // }
               }) }
             </div>
           )
-        })}
+        })} */}
+        {
+          arrWeek.map((weeks) => {
+            return(
+              <div className='calendar-week'>
+                {
+                  weeks.map((day, index) => {
+                    if ( viewMonth === 0 ) {
+                      if ( index <= PLDay ) {
+                        return( <Day year = {viewYear - 1} month = {12} day={day} clickEvent={() => {openModal(viewYear - 1, 12, day)}}/> )
+                      } else if ( index <= PLDay ){
+                        console.log("dasf")
+                      }
+                  }
+                  })
+                }
+              </div>
+            )
+          })
+        }
         {/* {
           dates.map((value) => {
             return <div className='calendar-week'> {value} </div>
