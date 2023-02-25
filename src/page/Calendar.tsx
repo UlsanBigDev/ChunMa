@@ -20,8 +20,8 @@ function Calendar(props : {setModal:Function}) {
   function Day(props : IDay) {
     return <div className='day' onClick={()=>{props.clickEvent(props.day)}}><p>{ props.day }</p></div>;
   }
+  const monthTemp = ["January","Feburary","March","April","May","June","July","Agust","September","October","November","December"];
 
-  const monthTemp = ["January","Feburary","March","April","June","July","Agust","September","October","November","December"];
   const dayTemp = ["SUN","MON","TUE","WED","THU","FRI","SAT"];
     
     // 이전 달의 마지막 날 날짜와 요일 구하기
@@ -33,22 +33,22 @@ function Calendar(props : {setModal:Function}) {
     let firstDay = new Date(prevYear,prevMonth,1).getDay();
     let lastDate = new Date(prevYear,prevMonth+1,0).getDate();
 
-    // 저번 달의 마지막 요일
-    let previouday = new Date( prevYear, prevMonth, 0).getDay();
+    let [updateMonth, setUpdateMonth] = useState(prevMonth);
+    let [updateYear, setUpdateYear] = useState(prevYear);
 
     // 저번 달의 마지막 날짜(전 달의 날짜를 표기하기 위해서)
     let previousmonth = new Date(prevYear,prevMonth,0).getDate();
+    
+    console.log(lastDate, prevYear, monthTemp[prevMonth], prevDate, dayTemp[prevDay]);
 
-    // 다음 달의 시작 요일(다음 달의 날짜를 표기하기 위해서)
-    let nextmonth = new Date(prevYear,prevMonth+1,1).getDay();
 
-    // console.log(lastDate, prevYear, monthTemp[prevMonth], prevDate, dayTemp[prevDay]);
-
-    let weekNum = Math.ceil((firstDay + lastDate) / 7); //prevDay -> firstDay 진짜 바본가
+    let weekNum = Math.ceil((firstDay + lastDate) / 7); //prevDay -> firstDay
 
     function openModal(year:number, month:number,day : number) {
       // setModalComponet();
-      props.setModal(<DayInfo year = {year} month = {month} day={day}/>);
+      
+      props.setModal(<DayInfo year = {updateYear} month = {updateMonth+1} day={day}/>);
+
     }
   
     // const arr=[];
@@ -119,26 +119,6 @@ function Calendar(props : {setModal:Function}) {
       nextDates.push(i);
     }
 
-    // 이전 달 버튼을 눌렀을 때 작동하는 함수
-    function beformonth() {
-      date.setDate(1);
-      date.setMonth(date.getMonth() - 1);
-      return 
-    }
-
-    // 다음 달 버튼을 눌렀을 때 작동하는 함수
-    function frontmonth() {
-      prevMonth = prevMonth + 1;
-      console.log("다음 달 테스트");
-      return prevMonth;
-    }
-
-    // 오늘 날짜로 돌아오는 함수
-    function today() {
-      prevMonth = startDay.getMonth();
-      console.log("Today 테스트");
-    }
-
     let dates = prevDates.concat(thisDates, nextDates);
 
 
@@ -146,12 +126,44 @@ function Calendar(props : {setModal:Function}) {
     for (let i = 0; i<weekNum; i++){
       arrWeek.push(testarr.slice(0 + 7*i, 7 * (i+1))) //0,7 7,14 14,21 21,28 28,35
     }
+    
+    // ---------추가된 코드----------(달(O), 년, 일(O), openModal 수정)
+    // 이전 달 버튼을 눌렀을 때 작동하는 함수
+    function beforemonth() {
+      if (updateMonth < 1) {
+        updateMonth = 12;
+        setUpdateYear(updateYear - 1)
+      }
+      setUpdateMonth(updateMonth - 1)
+    }
+
+    // 다음 달 버튼을 눌렀을 때 작동하는 함수
+    function frontmonth() {
+      if (updateMonth > 10) {
+        updateMonth = -1;
+        setUpdateYear(updateYear + 1)
+      } 
+      setUpdateMonth(updateMonth + 1)
+    }
+
+    // 오늘 날짜로 돌아오는 함수
+    function today() {
+      setUpdateMonth(prevMonth);
+      setUpdateYear(prevYear);
+    }
+    
     const weekArr = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
 
     return (
       <div>
         <div className='month'>
-          <p>{monthTemp[prevMonth]} {prevYear}</p>
+          <p>{monthTemp[updateMonth]} {updateYear}</p>
+      </div>
+      {/* 추가된 코드 */}
+      <div className='MonthMove'>
+          <button onClick={()=>{beforemonth()}}> &lt; </button>
+          <button onClick={() => {today()}}> Today </button>
+          <button onClick={() => {frontmonth()}}> &gt; </button>
       </div>
       <div className='MonthMove'>
           <button onClick={() => {beformonth()}}> &lt; </button>
