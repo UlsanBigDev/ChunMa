@@ -4,7 +4,6 @@ import '../App.css';
 import Modal from './Modal';
 import Home from './Home';
 import DayInfo from '../component/DayInfo';
-import MonthMove from '../component/MonthMove';
 
 interface IDay {
   day : number;
@@ -85,7 +84,7 @@ function Calendar(props : {setModal:Function}) {
     let [viewYear, setViewYear] = useState(date.getFullYear());
 
     // 이번 월
-    let [viewMonth, setviewMonth] = useState(date.getMonth());
+    let [viewMonth, setViewMonth] = useState(date.getMonth());
 
     // 지난 달
     let prevLast = new Date(viewYear, viewMonth, 0);
@@ -126,18 +125,26 @@ function Calendar(props : {setModal:Function}) {
 
     // 이전 달 버튼을 눌렀을 때 작동하는 함수
     function beformonth() {
-      setviewMonth(viewMonth - 1);
+      if (viewMonth < 1) {
+        viewMonth = 12;
+        setViewYear(viewYear - 1);
+      }
+      setViewMonth(viewMonth - 1);
     }
 
     // 다음 달 버튼을 눌렀을 때 작동하는 함수
     function frontmonth() {
-      setviewMonth(viewMonth + 1);
-      console.log(`이번 달 ${viewMonth}`)
+      if ( viewMonth > 10 ) {
+        viewMonth = -1;
+        setViewYear( viewYear + 1 );
+      }
+      setViewMonth(viewMonth + 1);
     }
 
     // 오늘 날짜로 돌아오는 함수
     function today() {
-      setviewMonth(date.getMonth());
+      setViewMonth(date.getMonth());
+      setViewYear(date.getFullYear());
     }
 
     let dates = prevDates.concat(thisDates, nextDates);
@@ -170,11 +177,12 @@ function Calendar(props : {setModal:Function}) {
           return(
             <div className='calendar-week'>
               { weeks.map((day, index)=>{
-                if ( day === -1) {
-                  if ( prevMonth === 0 ) {
-                    return <Day year = {prevYear-1} month = {12} day={previousmonth + day + index - 1} clickEvent={()=>{openModal(prevYear-1, 12, previousmonth + day + 1)}}/>
+                console.log(day);
+                if ( index <= PLDay) {
+                  if ( viewMonth === 0 ) {
+                    return <Day year = {viewYear-1} month = {12} day={day} clickEvent={()=>{openModal(viewYear-1, viewMonth, day)}}/>
                   } else {
-                    return <Day year = {prevYear} month = {prevMonth} day={previousmonth + day + index - 1} clickEvent={()=>{openModal(prevYear,prevMonth, previousmonth + day + 1)}}/>
+                    return <Day year = {viewYear} month = {viewMonth} day={day} clickEvent={()=>{openModal(viewYear, viewMonth, day)}}/>
                   }
                 } else if ( day === 0 ) {
                   return <Day year = {prevYear} month = {prevMonth+2} day={nextmonth - 5 + index} clickEvent={()=>{openModal(prevYear,prevMonth+2,nextmonth - 5 + index)}}/>
