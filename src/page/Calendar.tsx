@@ -109,7 +109,8 @@ function Calendar(props : {setModal:Function}) {
     let thisDates = [];
     let nextDates = [];
 
-    if (PLDay !== 6) {
+    // 이전달을 표시하는 날짜들
+    if (PLDay !== 6) { //마지막 날짜가 토요일에 끝아니면 굳이 할 필요가 없으므로
       for ( let i = 0; i < PLDay + 1; i++ ) {
         prevDates.unshift(PLDate - i);
       }
@@ -142,7 +143,7 @@ function Calendar(props : {setModal:Function}) {
     }
 
     // 오늘 날짜로 돌아오는 함수
-    function today() {
+    function gotoday() {
       setViewMonth(date.getMonth());
       setViewYear(date.getFullYear());
     }
@@ -157,6 +158,7 @@ function Calendar(props : {setModal:Function}) {
     }
     const weekArr = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
 
+
     return (
       <div>
         <div className='month'>
@@ -164,7 +166,7 @@ function Calendar(props : {setModal:Function}) {
       </div>
       <div className='MonthMove'>
           <button onClick={() => {beformonth()}}> &lt; </button>
-          <button onClick={() => {today()}}> Today </button>
+          <button onClick={() => {gotoday()}}> Today </button>
           <button onClick={() => {frontmonth()}}> &gt; </button>
       </div>
       <div className='week'>
@@ -204,11 +206,15 @@ function Calendar(props : {setModal:Function}) {
                 {
                   weeks.map((day, index) => {
                     if ( viewMonth === 0 ) {
-                      if ( index <= PLDay ) {
-                        return( <Day year = {viewYear - 1} month = {12} day={day} clickEvent={() => {openModal(viewYear - 1, 12, day)}}/> )
-                      } else if ( index <= PLDay ){
-                        console.log("dasf")
+                      if ( PLDay === 6 ) {
+                        return( <Day year = {viewYear} month = {12} day={day} clickEvent={() => {openModal(viewYear - 1, 12, day)}}/> )
+                      } else {
+                        return( <Day year = {viewYear} month = {viewMonth} day={day} clickEvent={() => {openModal(viewYear, viewMonth+1, day)}}/> )
                       }
+                  } else if ( viewMonth === 11 ) {
+                    return ( <Day year = {viewYear} month = {viewMonth + 1} day = {day} clickEvent = {() => {openModal(viewYear, viewMonth + 1, day)}}/>)
+                  } else {
+                    return ( <Day year = {viewYear} month = {viewMonth + 1} day = {day} clickEvent = {() => {openModal(viewYear, viewMonth + 1, day)}}/>)
                   }
                   })
                 }
