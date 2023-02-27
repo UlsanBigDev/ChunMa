@@ -69,12 +69,16 @@ export default function DayInfo(props : IDayInfo){
             
             // console.log(temp);
             setLines([...lines, line]);
+            const ToDoList = {
+                List : text
+            }
             console.log(lines);
-            setText("");
 
-            fetch('https://project-calendar-701d3-default-rtdb.firebaseio.com/ToDoList.json', {
-                method : 'POST'
+            fetch(`https://project-calendar-701d3-default-rtdb.firebaseio.com/ToDoList/.json`, {
+                method : 'POST',
+                body : JSON.stringify(ToDoList)
             })
+            setText("");
         }
         
     }
