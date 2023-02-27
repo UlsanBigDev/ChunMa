@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import logo from './logo.svg';
 import '../App.css';
 import Modal from './Modal';
@@ -43,9 +43,9 @@ function Calendar(props : {setModal:Function}) {
 
     let weekNum = Math.ceil((firstDay + lastDate) / 7); //prevDay -> firstDay 진짜 바본가
 
-    function openModal(year:number, month:number,day : number) {
+    function openModal(year: number, month: number, day : number) {
       // setModalComponet();
-      props.setModal(<DayInfo year = {year} month = {month} day={day}/>);
+      props.setModal(<DayInfo year = {year} month = {month} day = {day}/>);
     }
   
     // const arr=[];
@@ -95,10 +95,10 @@ function Calendar(props : {setModal:Function}) {
 
     // 지난 달 마지막 날짜
     let PLDate = prevLast.getDate();
-    console.log(PLDate);
+    // console.log(PLDate);
     // 지난 달 마지막 요일
     let PLDay = prevLast.getDay();
-    console.log(PLDay);
+    // console.log(PLDay);
 
     // 이번 달 마지막 날짜
     let TLDate = thisLast.getDate();
@@ -149,7 +149,7 @@ function Calendar(props : {setModal:Function}) {
     }
 
     let dates = prevDates.concat(thisDates, nextDates);
-    console.log(dates);
+    // console.log(dates);
 
 
     const arrWeek=[];
@@ -157,6 +157,8 @@ function Calendar(props : {setModal:Function}) {
       arrWeek.push(dates.slice(0 + 7*i, 7 * (i+1))) //0,7 7,14 14,21 21,28 28,35
     }
     const weekArr = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
+
+
 
 
     return (
