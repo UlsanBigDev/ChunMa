@@ -112,7 +112,7 @@ ul{
 
 }
 
-.day-info .day-list .createLine{
+.day-info .day-list .createLine, .deleteLine{
     width : 40px;
     display:flex;
     justify-content: center;

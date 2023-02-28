@@ -1,8 +1,9 @@
 import {useState, useRef, useEffect} from 'react';
 import '../css/main.css';
 
+
 interface IListItem{
-    text:string;
+    testtext:string;
 }
 
 interface ToDoList {
@@ -10,13 +11,15 @@ interface ToDoList {
     List : string;
 }
 
+
 function ListItem(props : IListItem){
+
     let [isChecked,setIsChecked] = useState<boolean>();
 
     return (
         <div className="todo-line">
             <input type="checkbox" onChange={(e)=>{setIsChecked(e.target.checked);}}/>
-            <p style={isChecked ? {textDecoration: "text-through"} : {textDecoration:"none"}}>{props.text}</p>
+            <p style={isChecked ? {textDecoration: "line-through"} : {textDecoration:"none"}}>{props.testtext}</p>
         </div>
     );
 }
@@ -58,7 +61,7 @@ export default function DayInfo(props : IDayInfo){
 
         if(text != ""){
             let line : JSX.Element = (
-                <ListItem text={text}/>
+                <ListItem testtext={text}/>
             );
             
             // 아련한 복사와 같다
@@ -72,7 +75,6 @@ export default function DayInfo(props : IDayInfo){
             const ToDoList = {
                 List : text
             }
-            console.log(lines);
 
             fetch(`https://project-calendar-701d3-default-rtdb.firebaseio.com/ToDoList/.json`, {
                 method : 'POST',
@@ -83,12 +85,17 @@ export default function DayInfo(props : IDayInfo){
         
     }
 
-    const TODOLIST = {
-        List : list
+
+
+    function deleteList(list : any) {
+        console.log(list.uid)
+        fetch(`https://project-calendar-701d3-default-rtdb.firebaseio.com/ToDoList/${list.uid}.json`, {
+            method : 'DELETE'
+        })
     }
-    useEffect(()=>{
-        inputField.current?.focus();
-    },[]);
+    let [is2Checked, setIs2Checked] = useState<boolean>();
+
+    // console.log(list)
 
     return (
         <div className="day-info">
@@ -97,19 +104,27 @@ export default function DayInfo(props : IDayInfo){
             <div className="day-list">
                 <div style={{display:"flex"}}>
                     <input type="text" ref={inputField} value={text} onChange={(e)=>{setText(e.currentTarget.value)}} onKeyUp={(e)=>{if(e.key === 'Enter') createLine()}}/>
-                    <div className="createLine" onClick={createLine} >추가</div>
+                    <div className = "deleteLine" onClick={createLine} >추가</div>
                 </div>
 
                 <br/>
                 <div style={{"overflowY":"scroll","height":"250px"}}>
-                    {
-                        list.map((TODOLIST : ToDoList , index) => {
-                            return (TODOLIST.List)
-                        })
-                    }
-                {/* <ul> */}
-                    {/* {lines ? lines : <p>할 일을 추가해보세요</p>} */}
-                {/* </ul>     */}
+                    <ul>
+                        {
+                            list.map((value : ToDoList , index) => {
+                                return (
+                                    <li className="todo-line">
+                                        <input type="checkbox" onChange={(e)=>{setIs2Checked(e.target.checked);}}/>
+                                        <p style={is2Checked ? {textDecoration: "line-through"} : {textDecoration:"none"}} >{value.List} </p>
+                                        <div className = "createLine" onClick = {() => {deleteList(value)}}> 삭제 </div>
+                                    </li>
+                                )
+                            })
+                        }
+                    </ul>
+                {/* <ul>
+                    {lines ? lines : <p>할 일을 추가해보세요</p>}
+                </ul> */}
                 </div>
                             
             </div>
