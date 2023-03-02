@@ -31,7 +31,7 @@ export default function DayInfo(props : IDayInfo){
 
 
     useEffect(() => {
-        fetch('https://project-calendar-701d3-default-rtdb.firebaseio.com/ToDoList.json', {
+        fetch(`https://project-calendar-701d3-default-rtdb.firebaseio.com/ToDoList/${props.year}/${props.month}/${props.day}.json`, {
             method : 'GET'
         })
         .then(res => {
@@ -76,7 +76,7 @@ export default function DayInfo(props : IDayInfo){
                 List : text
             }
 
-            fetch(`https://project-calendar-701d3-default-rtdb.firebaseio.com/ToDoList/.json`, {
+            fetch(`https://project-calendar-701d3-default-rtdb.firebaseio.com/ToDoList/${props.year}/${props.month}/${props.day}.json`, {
                 method : 'POST',
                 body : JSON.stringify(ToDoList)
             })
@@ -89,7 +89,7 @@ export default function DayInfo(props : IDayInfo){
 
     function deleteList(list : any) {
         console.log(list.uid)
-        fetch(`https://project-calendar-701d3-default-rtdb.firebaseio.com/ToDoList/${list.uid}.json`, {
+        fetch(`https://project-calendar-701d3-default-rtdb.firebaseio.com/ToDoList/${props.year}/${props.month}/${props.day}/${list.uid}.json`, {
             method : 'DELETE'
         })
     }
