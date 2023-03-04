@@ -175,9 +175,9 @@ function Calendar(props : {setModal:Function}) {
           <p>{monthTemp[viewMonth]} {viewYear}</p>
       </div>
       <div className='MonthMove'>
-          <button onClick={() => {beformonth()}}> &lt; </button>
-          <button onClick={() => {gotoday()}}> Today </button>
-          <button onClick={() => {frontmonth()}}> &gt; </button>
+          <button className='btn' onClick={() => {beformonth()}}> &lt; </button>
+          <button className='btn-today' onClick={() => {gotoday()}}> Today </button>
+          <button className='btn' onClick={() => {frontmonth()}}> &gt; </button>
       </div>
       <div className='week'>
         {weekArr.map((arr, index)=>{
