@@ -98,36 +98,36 @@ export default function DayInfo(props : IDayInfo){
     // console.log(list)
 
     return (
-        <div className="day-info">
+        <div className="day-info"> {/* 모달 창 */}
             <div className="today">{props.year}.{props.month}.{props.day}</div>
-            <br/>
-            <div className="day-list">
-                <div style={{display:"flex"}}>
-                    <input type="text" ref={inputField} value={text} onChange={(e)=>{setText(e.currentTarget.value)}} onKeyUp={(e)=>{if(e.key === 'Enter') createLine()}}/>
-                    <div className = "deleteLine" onClick={createLine} >추가</div>
-                </div>
-
                 <br/>
-                <div style={{"overflowY":"scroll","height":"250px"}}>
-                    <ul>
-                        {
-                            list.map((value : ToDoList , index) => {
-                                return (
-                                    <li className="todo-line">
-                                        <input type="checkbox" onChange={(e)=>{setIs2Checked(e.target.checked);}}/>
-                                        <p style={is2Checked ? {textDecoration: "line-through"} : {textDecoration:"none"}} >{value.List} </p>
-                                        <div className = "createLine" onClick = {() => {deleteList(value)}}> 삭제 </div>
-                                    </li>
-                                )
-                            })
-                        }
-                    </ul>
-                {/* <ul>
-                    {lines ? lines : <p>할 일을 추가해보세요</p>}
-                </ul> */}
+                <div className="day-list">
+                    <div style={{display:"flex"}}>
+                        <input type="text" ref={inputField} value={text} onChange={(e)=>{setText(e.currentTarget.value)}} onKeyUp={(e)=>{if(e.key === 'Enter') createLine()}}/>
+                        <div className = "deleteLine" onClick={createLine} >추가</div>
+                    </div>
+
+                    <br/>
+                    <div style={{"overflowY":"scroll","height":"250px"}}>
+                        <ul>
+                            {
+                                list.map((value : ToDoList , index) => {
+                                    return (
+                                        <li className="todo-line">
+                                            <input type="checkbox" onChange={(e)=>{setIs2Checked(e.target.checked);}}/>
+                                            <p style={is2Checked ? {textDecoration: "line-through"} : {textDecoration:"none"}} >{value.List} </p>
+                                            <div className = "createLine" onClick = {() => {deleteList(value)}}> 삭제 </div>
+                                        </li>
+                                    )
+                                })
+                            }
+                        </ul>
+                    {/* <ul>
+                        {lines ? lines : <p>할 일을 추가해보세요</p>}
+                    </ul> */}
+                    </div>
+                                
                 </div>
-                            
-            </div>
         </div>
     );
 }
