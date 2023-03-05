@@ -13,6 +13,7 @@ function Home() {
   function closeModal() {
     setModalComponet(null);
   }
+
   return (
     <div className='home'>
       <ModalListener component={modalComponent} closeModal={closeModal}/>
