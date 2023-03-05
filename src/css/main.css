@@ -40,6 +40,7 @@ p {
 .week > div > p {
     font-weight: bold;
 }
+.week:first-child > .week{}
 .calendar {
     /* background-color: aqua; */
     width: 780px;
