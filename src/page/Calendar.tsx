@@ -140,7 +140,13 @@ function Calendar(props : {setModal:Function}) {
                         return( <Day year = {viewYear} month = {viewMonth + 1} day = {day} clickEvent = {() => {openModal(viewYear, viewMonth + 1, day)}} /> )
                       } else {
                         if ( index <= PLDay ) {
-                          return( <Day year = {viewYear - 1} month = {12} day = {day} clickEvent = {() => {openModal(viewYear - 1, 12, day)}} /> )
+                          if ( index === 0) {
+                            return( <Day year = {viewYear - 1} month = {12} day = {day} clickEvent = {() => {openModal(viewYear - 1, 12, day)}} style = {{color:"rgba(250, 133, 133, 0.5)"}} /> )
+                          } else if ( index === 6) {
+                            return( <Day year = {viewYear - 1} month = {12} day = {day} clickEvent = {() => {openModal(viewYear - 1, 12, day)}} style = {{color:"rgba(85, 85, 255, 0.5)"}} /> )
+                          } else {
+                            return( <Day year = {viewYear - 1} month = {12} day = {day} clickEvent = {() => {openModal(viewYear -1 , 12, day)}} style = {{color:"rgba(0, 0, 0, 0.7)"}} /> )
+                          }
                         } else {
                           return( <Day year = {viewYear} month = {viewMonth + 1} day = {day} clickEvent = {() => {openModal(viewYear, viewMonth + 1, day)}} /> )
                         }
@@ -150,7 +156,13 @@ function Calendar(props : {setModal:Function}) {
                         return( <Day year = {viewYear} month = {viewMonth + 1} day = {day} clickEvent = {() => {openModal(viewYear, viewMonth + 1, day)}} /> )
                       } else {
                         if ( index <= PLDay ) {
-                          return( <Day year = {viewYear} month = {viewMonth} day = {day} clickEvent = {() => {openModal(viewYear, viewMonth, day)}} /> )
+                          if ( index === 0) {
+                            return( <Day year = {viewYear} month = {viewMonth} day = {day} clickEvent = {() => {openModal(viewYear, viewMonth, day)}} style = {{color:"rgba(250, 133, 133, 0.6)"}} /> )
+                          } else if ( index === 6) {
+                            return( <Day year = {viewYear} month = {viewMonth} day = {day} clickEvent = {() => {openModal(viewYear, viewMonth, day)}} style = {{color:"rgba(85, 85, 255, 0.6)"}} /> )
+                          } else {
+                            return( <Day year = {viewYear} month = {viewMonth} day = {day} clickEvent = {() => {openModal(viewYear, viewMonth, day)}} style = {{color:"rgba(20, 20, 20, 0.6)"}} /> )
+                          }
                         } else {
                           return( <Day year = {viewYear} month = {viewMonth + 1} day = {day} clickEvent = {() => {openModal(viewYear, viewMonth + 1, day)}} /> )
                         }
@@ -172,7 +184,13 @@ function Calendar(props : {setModal:Function}) {
                         if ( index <= TLDay ) {
                           return ( <Day year = {viewYear} month = {viewMonth + 1} day = {day} clickEvent = {() => openModal(viewYear, viewMonth + 1, day)} /> )
                         } else {
-                          return( <Day year = {viewYear + 1} month = {1} day = {day} clickEvent = {() => openModal(viewYear + 1, 1, day)} style = {{background:"transparentize($gray-color, 0.5)"}} /> )
+                          if ( index === 0) {
+                            return( <Day year = {viewYear + 1} month = {1} day = {day} clickEvent = {() => {openModal(viewYear + 1, 1, day)}} style = {{color:"rgba(250, 133, 133, 0.6)"}} /> )
+                          } else if ( index === 6) {
+                            return( <Day year = {viewYear + 1} month = {1} day = {day} clickEvent = {() => {openModal(viewYear + 1, 1, day)}} style = {{color:"rgba(85, 85, 255, 0.6)"}} /> )
+                          } else {
+                            return( <Day year = {viewYear + 1} month = {1} day = {day} clickEvent = {() => {openModal(viewYear + 1, 1, day)}} style = {{color:"rgba(20, 20, 20, 0.6)"}} /> )
+                          }
                         }
                       }
                     } else {
@@ -182,7 +200,13 @@ function Calendar(props : {setModal:Function}) {
                         if ( index <= TLDay ) {
                           return ( <Day year = {viewYear} month = {viewMonth + 1} day = {day} clickEvent = {() => openModal(viewYear, viewMonth + 1, day)} /> )
                         } else {
-                          return ( <Day year = {viewYear} month = {viewMonth + 2} day = {day} clickEvent = {() => openModal(viewYear, viewMonth + 2, day)} /> )
+                          if ( index === 0) {
+                            return( <Day year = {viewYear} month = {viewMonth + 2} day = {day} clickEvent = {() => {openModal(viewYear, viewMonth + 2, day)}} style = {{color:"rgba(250, 133, 133, 0.6)"}} /> )
+                          } else if ( index === 6) {
+                            return( <Day year = {viewYear} month = {viewMonth + 2} day = {day} clickEvent = {() => {openModal(viewYear, viewMonth + 2, day)}} style = {{color:"rgba(85, 85, 255, 0.6)"}} /> )
+                          } else {
+                            return( <Day year = {viewYear} month = {viewMonth + 2} day = {day} clickEvent = {() => {openModal(viewYear, viewMonth + 2, day)}} style = {{color:"rgba(20, 20, 20, 0.6)"}} /> )
+                          }
                         }
                       }
                     }
