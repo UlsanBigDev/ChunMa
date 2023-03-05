@@ -19,7 +19,6 @@ function Calendar(props : {setModal:Function}) {
   }
 
   const monthTemp = ["January","Feburary","March","April","May","June","July","Agust","September","October","November","December"];
-  const dayTemp = ["SUN","MON","TUE","WED","THU","FRI","SAT"];
     
     // 이전 달의 마지막 날 날짜와 요일 구하기
     let startDay = new Date();
@@ -47,25 +46,6 @@ function Calendar(props : {setModal:Function}) {
       props.setModal(<DayInfo year = {year} month = {month} day = {day}/>);
     }
   
-    // const arr=[];
-
-
-    
-    // for (let i = previousmonth - firstDay+1; i<=previousmonth; i++){
-    //   arr.push(i);
-    // }
-
-    // for (let i = 1; i<=lastDate; i++){
-    //   arr.push(i);
-    // }
-
-    // let i = 1;
-    // while (arr.length < weekNum * 7){
-    //   arr.push(i);
-    //   i += 1;
-    // }
-
-
     // 오늘 날짜를 state로 받기
     let [date, setDate] = useState(new Date());
 
@@ -78,6 +58,7 @@ function Calendar(props : {setModal:Function}) {
     // 지난 달
     let prevLast = new Date(viewYear, viewMonth, 0);
     // console.log(prevLast);
+
     // 이번 달
     let thisLast = new Date(viewYear, viewMonth + 1, 0);
     // console.log(thisLast);
@@ -87,6 +68,7 @@ function Calendar(props : {setModal:Function}) {
     // 지난 달 마지막 날짜
     let PLDate = prevLast.getDate();
     // console.log(PLDate);
+
     // 지난 달 마지막 요일
     let PLDay = prevLast.getDay();
     // console.log(PLDay);
@@ -100,22 +82,7 @@ function Calendar(props : {setModal:Function}) {
     let thisDates = [];
     let nextDates = [];
 
-
-    let weekNum = Math.ceil((firstDay + lastDate) / 7); //prevDay -> firstDay 진짜 바본가
-
-
-    const testarr = [];
-
-    for ( let i = 0; i < firstDay; i++ ){
-      testarr.push(-1);
-    }
-    for (let i = 1; i<=lastDate; i++){
-      testarr.push(i);
-    }
-    while (testarr.length < weekNum * 7){
-      testarr.push(0);
-    }
-
+    // let weekNum = Math.ceil((firstDay + lastDate) / 7); //prevDay -> firstDay 진짜 바본가
 
     // 이전달을 표시하는 날짜들
     if (PLDay !== 6) { //마지막 날짜가 토요일에 끝아니면 굳이 할 필요가 없으므로
@@ -157,17 +124,14 @@ function Calendar(props : {setModal:Function}) {
     }
 
     let dates = prevDates.concat(thisDates, nextDates);
-
+    let weekNum = dates.length / 7 - 1; //해당 달 주 수 - 1
 
     const arrWeek = [];
     for (let i = 0; i <= weekNum; i++){
       arrWeek.push(dates.slice(0 + 7*i, 7 * (i+1))) //0,7 7,14 14,21 21,28 28,35
     }
-    
 
     const weekArr = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
-
-
 
     return (
       <div>
@@ -181,40 +145,16 @@ function Calendar(props : {setModal:Function}) {
       </div>
       <div className='week'>
         {weekArr.map((arr, index)=>{
-          return <div><p>{arr}</p></div>
+          return <div className='week'><p>{arr}</p></div>
         })}
       </div>
       <div className='calendar'>        
-        {/* {arrWeek.map((weeks) => {
-          return(
-            <div className='calendar-week'>
-              { weeks.map((day, index)=>{
-                console.log(day);
-                if ( index <= PLDay ) {
-                  if ( viewMonth === 0 ) {
-                    return <Day year = {viewYear} month = {viewMonth + 1} day={day} clickEvent={()=>{openModal(viewYear, viewMonth + 1, day)}}/>
-                  } else if ( index <= PLDay) {
-                    return <Day year = {viewYear - 1} month = {12} day={day} clickEvent={()=>{openModal(viewYear - 1, 12 , day)}}/>
-                  }
-                } 
-                  // else {
-                  //   return <Day year = {viewYear} month = {viewMonth} day={day} clickEvent={()=>{openModal(viewYear, viewMonth, day)}}/>
-                  // }
-                // else if ( day === 0 ) {
-                //   return <Day year = {prevYear} month = {prevMonth+2} day={nextmonth - 5 + index} clickEvent={()=>{openModal(prevYear,prevMonth+2,nextmonth - 5 + index)}}/>
-                // } else {
-                //   return <Day year = {prevYear} month = {prevMonth+1} day={day} clickEvent={()=>{openModal(prevYear,prevMonth+1,day)}}/>
-                // }
-              }) }
-            </div>
-          )
-        })} */}
         {
           // 1. index가 0일 때, (첫째 주) -> 달 변경 , day 가져오기 -> 1월 일 때, 2~11월 일 때, 12월 일때
           // 2. index가 마지막일 때 (마지막 주) -> 달 변경, day 가져오기 -> 1월 일 때, 2~11월 일 때, 12월 일때
           // 3. 나머지 (나머지 주) -> 달, day 가져오기 -> 1월 일 때, 2~11월 일 때, 12월 일때
-          
           arrWeek.map((weeks,index) => {
+            console.log(weekNum,weeks,index)
             if(index==0){
               return(
                 <div className='calendar-week'>{
@@ -249,91 +189,37 @@ function Calendar(props : {setModal:Function}) {
                 </div>
               )
             }
-            // else if (index === 4) {
-            //   return(
-            //     <div className = 'calendar-week'>{
-            //       weeks.map((day,index) => {
-            //         console.log(day);
-            //         if ( viewMonth === 11 ) {
-            //           if ( TLDay === 6 ) {
-            //             return( <Day year = {viewYear} month = {viewMonth + 1} day={day} clickEvent={() => {openModal(viewYear, viewMonth + 1, day)}}/> )
-            //           } else {
-            //             if ( day < index ) {
-            //               return( <Day year = {viewYear + 1} month = {1} day={day} clickEvent={() => {openModal(viewYear + 1, 1, day)}}/> )
-            //             } else {
-            //               return( <Day year = {viewYear} month = {viewMonth + 1} day={day} clickEvent={() => {openModal(viewYear, viewMonth + 1, day)}}/> )
-            //             }
-            //           }
-            //         } else {
-            //           if ( TLDay === 6 ) {
-            //             return( <Day year = {viewYear} month = {viewMonth + 1} day={day} clickEvent={() => {openModal(viewYear, viewMonth + 1, day)}}/> )
-            //           } else {
-            //             if ( TLDay < index ) {
-            //               return( <Day year = {viewYear} month = {viewMonth + 2} day={day} clickEvent={() => {openModal(viewYear, viewMonth + 2, day)}}/> )
-            //             } else {
-            //               return( <Day year = {viewYear} month = {viewMonth + 1} day={day} clickEvent={() => {openModal(viewYear, viewMonth + 1, day)}}/> )
-            //             }
-            //           }
-            //         }
-            //       })
-            //     }
-            //     </div>
-            //   )
-            // }
-
-            else if (index===4) {
-                return(
-                  <div className = 'calendar-week'>{
-                    weeks.map((day,index) => {
-                      if ( viewMonth === 11 ) {
-                        if ( day <= 6 ) {
-                          return( <Day year = {viewYear + 1} month = {1} day={day} clickEvent={() => {openModal(viewYear + 1, 1, day)}}/> )
-                        } else {
-                          return( <Day year = {viewYear} month = {viewMonth + 1} day={day} clickEvent={() => {openModal(viewYear, viewMonth + 1, day)}}/> )
-                        }
-                      } else {
-                        if ( day <= 6 ) {
-                          return( <Day year = {viewYear} month = {viewMonth + 2} day={day} clickEvent={() => {openModal(viewYear, viewMonth + 2, day)}}/> )
-                        } else {
-                          return( <Day year = {viewYear} month = {viewMonth + 1} day={day} clickEvent={() => {openModal(viewYear, viewMonth + 1, day)}}/> )
-                        }
-                      }
-                    })
-                  }
-                  </div>
-                ) 
-            }
-
-            else if (weeks[5] !== undefined && index === 5) {
+            else if(index==weekNum){
               return(
-                <div className = 'calendar-week'>{
-                  weeks.map((day, index) => {
-                    if ( viewMonth === 11 ) {
+                <div className='calendar-week'>
+                  {weeks.map((day,index)=>{
+                    if (viewMonth==11){
                       if ( TLDay === 6 ) {
-                        return( <Day year = {viewYear} month = {viewMonth + 1} day={day} clickEvent={() => {openModal(viewYear, viewMonth + 1, day)}}/> )
-                      } else {
-                        if ( TLDay < index ) {
-                          return( <Day year = {viewYear + 1} month = {1} day={day} clickEvent={() => {openModal(viewYear + 1, 1, day)}}/> )
-                        } else {
                           return( <Day year = {viewYear} month = {viewMonth + 1} day={day} clickEvent={() => {openModal(viewYear, viewMonth + 1, day)}}/> )
+                        } else {
+                          if ( day <= index ) {
+                            return( <Day year = {viewYear + 1} month = {1} day={day} clickEvent={() => {openModal(viewYear + 1, 1, day)}}/> )
+                          } else {
+                            return( <Day year = {viewYear} month = {viewMonth + 1} day={day} clickEvent={() => {openModal(viewYear, viewMonth + 1, day)}}/> )
+                          }
                         }
-                      }
-                    } else {
-                      if ( TLDay === 6 ) {
-                        return( <Day year = {viewYear} month = {viewMonth + 1} day={day} clickEvent={() => {openModal(viewYear, viewMonth + 1, day)}}/> )
                       } else {
-                        if ( TLDay < index ) {
-                          return( <Day year = {viewYear} month = {viewMonth + 2} day={day} clickEvent={() => {openModal(viewYear, viewMonth + 2, day)}}/> )
-                        } else {
+                        if ( TLDay === 6 ) {
                           return( <Day year = {viewYear} month = {viewMonth + 1} day={day} clickEvent={() => {openModal(viewYear, viewMonth + 1, day)}}/> )
+                        } else {
+                          if ( TLDay < index ) {
+                            return( <Day year = {viewYear} month = {viewMonth + 2} day={day} clickEvent={() => {openModal(viewYear, viewMonth + 2, day)}}/> )
+                          } else {
+                            return( <Day year = {viewYear} month = {viewMonth + 1} day={day} clickEvent={() => {openModal(viewYear, viewMonth + 1, day)}}/> )
+                          }
                         }
                       }
                     }
-                  })
-                }
+                  )}
                 </div>
               )
-            } else {
+            }
+            else {
               return(
                 <div className = 'calendar-week'> {
                   weeks.map((day, index) => {
@@ -343,6 +229,8 @@ function Calendar(props : {setModal:Function}) {
                 </div>
               )
             }
+
+            
             // return(
             //   <div className='calendar-week'>
                 
@@ -366,11 +254,6 @@ function Calendar(props : {setModal:Function}) {
             // )
           })
         }
-        {/* {
-          dates.map((value) => {
-            return <div className='calendar-week'> {value} </div>
-          })
-        } */}
       </div>        
       </div>
     );
