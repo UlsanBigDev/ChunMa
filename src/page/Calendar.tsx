@@ -53,7 +53,6 @@ function Calendar(props : {setModal:Function}) {
   let TLDate = thisLast.getDate();
   // 이번 달 마지막 요일
   let TLDay = thisLast.getDay();
-  console.log(TLDay)
 
   // 이전 달 버튼을 눌렀을 때 작동하는 함수
   function beformonth() {
@@ -166,7 +165,6 @@ function Calendar(props : {setModal:Function}) {
               <div className='calendar-week'>
                 {
                   weeks.map((day, index) => {
-                    console.log(index);
                     if ( viewMonth === 11 ) {
                       if ( TLDay === 6 ) {
                         return( <Day year = {viewYear} month = {viewMonth + 1} day = {day} clickEvent = {() => openModal(viewYear, viewMonth + 1, day)} /> )
