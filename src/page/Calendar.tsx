@@ -172,7 +172,7 @@ function Calendar(props : {setModal:Function}) {
                         if ( index <= TLDay ) {
                           return ( <Day year = {viewYear} month = {viewMonth + 1} day = {day} clickEvent = {() => openModal(viewYear, viewMonth + 1, day)} /> )
                         } else {
-                          return( <Day year = {viewYear + 1} month = {1} day = {day} clickEvent = {() => openModal(viewYear + 1, 1, day)} style = {{backgroundColor:"black"}} /> )
+                          return( <Day year = {viewYear + 1} month = {1} day = {day} clickEvent = {() => openModal(viewYear + 1, 1, day)} style = {{background:"transparentize($gray-color, 0.5)"}} /> )
                         }
                       }
                     } else {
