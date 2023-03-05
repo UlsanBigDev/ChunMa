@@ -8,6 +8,16 @@ function Modal(props : IModal) {
         setIsModal(!isModal);
     };
 
+    useEffect(()=>{
+        window.onkeydown = (event)=>{            
+            if(event.key == "Escape")
+                props.closeFunction && props.closeFunction();
+        }
+        return ()=>{
+            window.onkeydown = null;
+        }
+    }, []);
+
     return (
         <div>
             <div className='Modal-container'>                

@@ -29,7 +29,6 @@ export default function DayInfo(props : IDayInfo){
     let [list, setList] = useState<ToDoList[]>([]);
     let [lines, setLines] = useState<Array<JSX.Element>>([]);
 
-
     useEffect(() => {
         fetch(`https://project-calendar-701d3-default-rtdb.firebaseio.com/ToDoList/${props.year}/${props.month}/${props.day}.json`, {
             method : 'GET'
