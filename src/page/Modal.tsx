@@ -1,37 +1,27 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import '../App.css';
 
-interface IModal {
-    component : React.ReactNode;
-    width : number;
-    height : number;
-    day : number;
-}
-
 function Modal(props : IModal) {
+
     const [isModal, setIsModal] = useState<boolean>(false);
     const toggleModal = () => {
         setIsModal(!isModal);
     };
-    
+
     return (
         <div>
-            <div className='Modal-day' onClick={toggleModal}>{props.day}</div>
-
-            {isModal && (
-                <div className='Modal-container'>
-                    <div className="Modal-content" style={{
-                        minWidth: props.width,
-                        minHeight: props.height
-                    }}>
-                        { props.component }
-                        <button onClick={toggleModal} className="Modal-btn">x</button>      
+            <div className='Modal-container'>                
+                <div className="Modal-content" style={{
+                    minWidth: props.width,
+                    minHeight: props.height
+                }}>                    
+                    <div className='Modal-header'>
+                        <p className='Modal-btn' onClick={()=>{props.closeFunction && props.closeFunction()}}>X</p>
                     </div>
-                </div>
-            )}
-            
+                    {props.component}                    
+                </div>                
+            </div>
         </div>
-        
     );
 }
 
