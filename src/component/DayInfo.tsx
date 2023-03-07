@@ -26,9 +26,9 @@ function ListItem(props : IListItem){
 
 export default function DayInfo(props : IDayInfo){
 
-    let [list, setList] = useState<ToDoList[]>([]);
+    let [list, setList] = useState<ToDoList[] | null>();
     let [lines, setLines] = useState<Array<JSX.Element>>([]);
-    let [tent, setTent] = useState<string>("로딩중");
+    // let [tent, setTent] = useState<string>("로딩중");
 
     useEffect(() => {
         fetch(`https://project-calendar-701d3-default-rtdb.firebaseio.com/ToDoList/${props.year}/${props.month}/${props.day}.json`, {
@@ -40,7 +40,7 @@ export default function DayInfo(props : IDayInfo){
         .then(data => {
             setTimeout(()=>{
                 const arr = Object.entries<ToDoList>(data);
-                const temp = [...list];
+                const temp = list == null ? [] : [...list];
                 arr.forEach((value) => {
                     value[1] = {
                         ...value[1],
@@ -49,10 +49,7 @@ export default function DayInfo(props : IDayInfo){
                     temp.push(value[1]);
                 });
                 setList(temp);
-            },10);
-            if (!list.length){
-                setTent("데이터없음")
-            }
+            },10);            
         });
     },[]);
 
@@ -103,7 +100,8 @@ export default function DayInfo(props : IDayInfo){
 
     //로딩과 데이터 없음의 차이점은 ? 몇 초 뒤 데이터가 있어짐 vs 몇 초 뒤 데이터가 없음을 유지 / 로딩 -> 데이터 O or 로딩 -> 데이터 X 
 
-    return (
+    console.log(list)
+    return (        
         <div className="day-info"> {/* 모달 창 */}
             <div className="today">{props.year}.{props.month}.{props.day}</div>
                 <br/>
@@ -116,7 +114,7 @@ export default function DayInfo(props : IDayInfo){
                     <br/>
                     <div style={{"overflowY":"scroll","height":"250px"}}>
                         <ul>
-                            {list.length ? 
+                            {/* {list.length ? 
                                 list.map((value : ToDoList , index) => {
                                     return (
                                         <li className="todo-line">
@@ -126,7 +124,21 @@ export default function DayInfo(props : IDayInfo){
                                         </li>
                                     )
                                 })
-                            :tent}
+                            :tent} */}                            
+                            {list != null || list != undefined
+                            ? list.length != 0
+                                ? list.map((value : ToDoList , index) => {
+                                    return (
+                                        <li className="todo-line">
+                                            <input type="checkbox" onChange={(e)=>{setIs2Checked(e.target.checked);}}/>
+                                            <p style={is2Checked ? {textDecoration: "line-through"} : {textDecoration:"none"}} >{value.List} </p>
+                                            <div className = "createLine" onClick = {() => {deleteList(value)}}> 삭제 </div>
+                                        </li>
+                                    )
+                                })
+                                : <li>No Data</li>
+                            : <li>로딩중</li>
+                            }
                         </ul>
                     {/* <ul>
                         {lines.length ? lines : <p>할 일을 추가해보세요</p>}
