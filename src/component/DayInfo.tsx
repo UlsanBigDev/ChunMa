@@ -28,6 +28,7 @@ export default function DayInfo(props : IDayInfo){
 
     let [list, setList] = useState<ToDoList[]>([]);
     let [lines, setLines] = useState<Array<JSX.Element>>([]);
+    let [tent, setTent] = useState<string>("로딩중");
 
     useEffect(() => {
         fetch(`https://project-calendar-701d3-default-rtdb.firebaseio.com/ToDoList/${props.year}/${props.month}/${props.day}.json`, {
@@ -37,19 +38,25 @@ export default function DayInfo(props : IDayInfo){
             return res.json();
         })
         .then(data => {
-            const arr = Object.entries<ToDoList>(data);
-            const temp = [...list];
-            arr.forEach((value) => {
-                value[1] = {
-                    ...value[1],
-                    uid : value[0]
-                }
-                temp.push(value[1]);
-            });
-            setList(temp);
+            setTimeout(()=>{
+                const arr = Object.entries<ToDoList>(data);
+                const temp = [...list];
+                arr.forEach((value) => {
+                    value[1] = {
+                        ...value[1],
+                        uid : value[0]
+                    }
+                    temp.push(value[1]);
+                });
+                setList(temp);
+            },10);
+            if (!list.length){
+                setTent("데이터없음")
+            }
         });
     },[]);
 
+    
     let [text, setText] = useState<string>("");
     //let [checked, setChecked] = useState<boolean>(false);
 
@@ -94,7 +101,7 @@ export default function DayInfo(props : IDayInfo){
     }
     let [is2Checked, setIs2Checked] = useState<boolean>();
 
-    // console.log(list)
+    //로딩과 데이터 없음의 차이점은 ? 몇 초 뒤 데이터가 있어짐 vs 몇 초 뒤 데이터가 없음을 유지 / 로딩 -> 데이터 O or 로딩 -> 데이터 X 
 
     return (
         <div className="day-info"> {/* 모달 창 */}
@@ -109,7 +116,7 @@ export default function DayInfo(props : IDayInfo){
                     <br/>
                     <div style={{"overflowY":"scroll","height":"250px"}}>
                         <ul>
-                            {
+                            {list.length ? 
                                 list.map((value : ToDoList , index) => {
                                     return (
                                         <li className="todo-line">
@@ -119,10 +126,10 @@ export default function DayInfo(props : IDayInfo){
                                         </li>
                                     )
                                 })
-                            }
+                            :tent}
                         </ul>
                     {/* <ul>
-                        {lines ? lines : <p>할 일을 추가해보세요</p>}
+                        {lines.length ? lines : <p>할 일을 추가해보세요</p>}
                     </ul> */}
                     </div>
                                 
